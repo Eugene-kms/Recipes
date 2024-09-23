@@ -1,7 +1,18 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Key" : {
+    "error.fetch-recipes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recipe fetch failed"
+          }
+        }
+      }
+    },
+    "error.file-not-found" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
