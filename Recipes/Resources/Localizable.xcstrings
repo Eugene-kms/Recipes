@@ -23,6 +23,17 @@
         }
       }
     },
+    "error.search-recipes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recipe search failed"
+          }
+        }
+      }
+    },
     "search.placeholder" : {
       "extractionState" : "manual",
       "localizations" : {

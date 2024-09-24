@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.placeholder = "search.placeholder".localized
-//        searchBar.delegate = self
+        searchBar.delegate = self
         searchBar.backgroundImage = UIImage()
         searchBar.backgroundColor = .clear
         return searchBar
@@ -92,5 +92,14 @@ extension HomeViewController: UITableViewDataSource {
         let recipe = viewModel.recipes[indexPath.row]
         cell.configure(with: recipe)
         return cell
+    }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        Task {
+            await viewModel.searchRecipes(query: searchText)
+            tableView.reloadData()
+        }
     }
 }
