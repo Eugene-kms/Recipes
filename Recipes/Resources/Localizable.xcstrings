@@ -22,6 +22,17 @@
           }
         }
       }
+    },
+    "search.placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search recipes…"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

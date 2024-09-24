@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4456A1C42CA3428500553C48 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4456A1C32CA3428500553C48 /* SnapKit */; };
+		4456A1C72CA347FE00553C48 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 4456A1C62CA347FE00553C48 /* SDWebImage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		4456A1692CA1DFB600553C48 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4456A1C72CA347FE00553C48 /* SDWebImage in Frameworks */,
+				4456A1C42CA3428500553C48 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +110,8 @@
 			);
 			name = Recipes;
 			packageProductDependencies = (
+				4456A1C32CA3428500553C48 /* SnapKit */,
+				4456A1C62CA347FE00553C48 /* SDWebImage */,
 			);
 			productName = Recipes;
 			productReference = 4456A1522CA1DFB100553C48 /* Recipes.app */;
@@ -156,9 +165,14 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 4456A1492CA1DFB100553C48;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4456A1C22CA3428500553C48 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				4456A1C52CA347FE00553C48 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4456A1532CA1DFB100553C48 /* Products */;
 			projectDirPath = "";
@@ -278,6 +292,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -342,6 +357,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -461,6 +477,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4456A1C22CA3428500553C48 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		4456A1C52CA347FE00553C48 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.19.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4456A1C32CA3428500553C48 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4456A1C22CA3428500553C48 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		4456A1C62CA347FE00553C48 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4456A1C52CA347FE00553C48 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4456A14A2CA1DFB100553C48 /* Project object */;
 }
