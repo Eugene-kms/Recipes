@@ -1,9 +1,5 @@
 import Foundation
 
-protocol RecipeRepositoryProtocol {
-    func fetchRecipes() async throws -> [Recipe]
-}
-
 class HomeViewModel {
     
     private let repository: RecipeRepositoryProtocol

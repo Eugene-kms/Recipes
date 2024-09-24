@@ -11,6 +11,9 @@ class HomeCoordinator: Coordinator {
     }
     
     func start() {
+        let viewModel = HomeViewModel(repository: container.recipeRepository)
+        let viewController = HomeViewController(viewModel: viewModel)
         
+        navigationController.pushViewController(viewController, animated: false)
     }
 }

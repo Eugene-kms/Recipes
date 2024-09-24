@@ -7,4 +7,13 @@ struct RecipeDTO: Codable {
     let duration: Int
 }
 
-
+extension RecipeDTO {
+    func toDomain() -> Recipe {
+        return Recipe(
+            id: id,
+            name: name,
+            imageURL: imageURL,
+            duration: duration
+        )
+    }
+}
