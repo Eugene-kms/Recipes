@@ -10,7 +10,7 @@ enum MockError: Error {
 class RecipeRepositoryMock: RecipeRepositoryProtocol {
     
     var fetchRecipesResult: [Recipe] = []
-    var didFetchRecipes = 0
+    var didFetchRecipes: Int = 0
     var shouldFetchRecipesThrowError = false
     
     func fetchRecipes() async throws -> [Recipes.Recipe] {
@@ -23,7 +23,19 @@ class RecipeRepositoryMock: RecipeRepositoryProtocol {
         return fetchRecipesResult
     }
     
-    func search(with query: String) async throws -> [Recipes.Recipe] { [] }
+    var didSearchWithQuery: [String] = []
+    var shouldFailSearchWithQuery = false
+    var searchWithQueryResults: [Recipe] = []
+    
+    func search(with query: String) async throws -> [Recipes.Recipe] {
+        didSearchWithQuery.append(query)
+        
+        if shouldFailSearchWithQuery {
+            throw MockError.mock
+        }
+        
+        return searchWithQueryResults
+    }
 }
 
 extension Recipe {
@@ -78,5 +90,55 @@ class HomeViewModelTests: XCTestCase {
         //then
         await fulfillment(of: [expection], timeout: 0.5)
         XCTAssertEqual(errorText, "error.fetch-recipes".localized + " " + MockError.mock.localizedDescription)
+    }
+    
+    func test_whenSearchSucceeds_thenShowResults() async {
+        //given
+        let query = "query"
+        let mockResults = [Recipe.mock]
+        repository.searchWithQueryResults = mockResults
+        
+        //when
+        await viewModel.searchRecipes(query: query)
+        
+        //then
+        XCTAssertEqual(repository.didSearchWithQuery.count, 1)
+        XCTAssertEqual(repository.didSearchWithQuery[0], query)
+        XCTAssertEqual(viewModel.recipes, mockResults)
+    }
+    
+    func test_whenSearchFails_thenShowResults() async {
+        //given
+        let query = "query"
+        repository.shouldFailSearchWithQuery = true
+        
+        let expection = self.expectation(description: "error shown")
+        var showErrorText: String?
+        viewModel.showError = { text in
+            expection.fulfill()
+            showErrorText = text
+        }
+        
+        //when
+        await viewModel.searchRecipes(query: query)
+        
+        //then
+        await fulfillment(of: [expection], timeout: 0.5)
+        XCTAssertTrue(showErrorText!.contains("error.search-recipes".localized))
+    }
+    
+    func test_whenSearchWithEmptyQuery_thenFetchAllRecipes() async {
+        //given
+        let query = ""
+        let mockResults = [Recipe.mock]
+        repository.fetchRecipesResult = mockResults
+        
+        //when
+        await viewModel.searchRecipes(query: query)
+        
+        //then
+        XCTAssertEqual(repository.didSearchWithQuery.count, 0)
+        XCTAssertEqual(repository.didFetchRecipes, 1)
+        XCTAssertEqual(viewModel.recipes, mockResults)
     }
 }
