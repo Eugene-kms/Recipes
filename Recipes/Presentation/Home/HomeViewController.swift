@@ -2,6 +2,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    var coordinator: Coordinator?
+    
     private let viewModel: HomeViewModel
     
     private lazy var tableView: UITableView = {
@@ -9,7 +11,7 @@ class HomeViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(RecipeCell.self, forCellReuseIdentifier: "RecipeCell")
         tableView.dataSource = self
-//        tableView.delegate = self
+        tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.backgroundColor = .background
         return tableView
@@ -92,6 +94,13 @@ extension HomeViewController: UITableViewDataSource {
         let recipe = viewModel.recipes[indexPath.row]
         cell.configure(with: recipe)
         return cell
+    }
+}
+
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let recipe = viewModel.recipes[indexPath.row]
+        viewModel.didSelectRecipe?(recipe)
     }
 }
 

@@ -6,6 +6,7 @@ class HomeViewModel {
     
     var recipes: [Recipe] = []
     var showError: ((String) -> Void)?
+    var didSelectRecipe: ((Recipe) -> Void)?
     
     init(repository: RecipeRepositoryProtocol) {
         self.repository = repository
