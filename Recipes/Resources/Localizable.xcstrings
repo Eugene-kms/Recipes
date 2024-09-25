@@ -34,6 +34,17 @@
         }
       }
     },
+    "recipe.ingredients" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingredients"
+          }
+        }
+      }
+    },
     "search.placeholder" : {
       "extractionState" : "manual",
       "localizations" : {
