@@ -12,12 +12,23 @@ class LocalRecipeDataSource: LocalRecipeDataSourceProtocol {
     }
     
     func fetchRecipes() throws -> [RecipeDTO] {
+        
+        print("func fetchRecipes()-1")
+        
         guard let url = Bundle.main.url(forResource: "recipes", withExtension: "json") else {
             throw LocalRecipeDataSourceError.fileNotFound("recipes.json")
         }
         
+        print("let url-\(url)")
+        
         let data = try Data(contentsOf: url)
-        return try decoder.decode([RecipeDTO].self, from: data)
+        
+        print("let data-\(data.count)")
+        
+        let result = try decoder.decode([RecipeDTO].self, from: data)
+        print("let result-\(result)")
+        
+        return result
     }
 }
 

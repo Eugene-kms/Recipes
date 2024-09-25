@@ -5,6 +5,11 @@ struct RecipeDTO: Codable {
     let name: String
     let imageURL: String
     let duration: Int
+    
+    private enum CodingKeys: String, CodingKey {
+        case id, name, duration
+        case imageURL = "imageUrl"
+    }
 }
 
 extension RecipeDTO {

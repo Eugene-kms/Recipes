@@ -17,6 +17,7 @@ class HomeViewModel {
             self.recipes = recipes
         } catch {
             showError?("error.fetch-recipes".localized + " " + error.localizedDescription)
+            print(error)
         }
     }
     
