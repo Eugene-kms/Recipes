@@ -2,6 +2,7 @@ import Foundation
 
 protocol LocalRecipeDataSourceProtocol {
     func fetchRecipes() throws -> [RecipeDTO]
+    func fetchRecipe(with id: String) throws -> RecipeDetailDTO
 }
 
 class LocalRecipeDataSource: LocalRecipeDataSourceProtocol {
@@ -12,21 +13,20 @@ class LocalRecipeDataSource: LocalRecipeDataSourceProtocol {
     }
     
     func fetchRecipes() throws -> [RecipeDTO] {
+        try fetchFile(with: "recipes")
+    }
+    
+    func fetchRecipe(with id: String) throws -> RecipeDetailDTO {
+        try fetchFile(with: "recipe_detail_\(id)")
+    }
+    
+    private func fetchFile<T: Decodable>(with fileName: String) throws -> T {
         
-        print("func fetchRecipes()-1")
-        
-        guard let url = Bundle.main.url(forResource: "recipes", withExtension: "json") else {
-            throw LocalRecipeDataSourceError.fileNotFound("recipes.json")
+        guard let url = Bundle.main.url(forResource: fileName, withExtension: "json") else {
+            throw LocalRecipeDataSourceError.fileNotFound("\(fileName).json")
         }
-        
-        print("let url-\(url)")
-        
         let data = try Data(contentsOf: url)
-        
-        print("let data-\(data.count)")
-        
-        let result = try decoder.decode([RecipeDTO].self, from: data)
-        print("let result-\(result)")
+        let result = try decoder.decode(T.self, from: data)
         
         return result
     }
