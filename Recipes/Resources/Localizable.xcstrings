@@ -1,6 +1,17 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "error.fetch-recipe-detail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recipe Detail fetch failed"
+          }
+        }
+      }
+    },
     "error.fetch-recipes" : {
       "extractionState" : "manual",
       "localizations" : {

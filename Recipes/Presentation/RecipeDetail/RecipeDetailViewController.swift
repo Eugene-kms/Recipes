@@ -31,6 +31,14 @@ class RecipeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        fetch()
+    }
+    
+    private func fetch() {
+        Task { [weak self] in
+            await self?.viewModel.loadRecipeDetail()
+            self?.tableView.reloadData()
+        }
     }
     
     private func setupUI() {

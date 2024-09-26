@@ -1,5 +1,26 @@
 import UIKit
 
 class RecipeDetailViewModel {
-    var recipeDetail: RecipeDetail? = RecipeDetail(id: "0", name: "Fruit Smoothie", imageUrl: "https://firebasestorage.googleapis.com/v0/b/recipes-ecbaa.appspot.com/o/690%2Ffruit-smoothie.jpg?alt=media&token=8f568595-ca9e-4c62-8eb4-b4bc27f666e1", description: "A refreshing and nutritious fruit smoothie packed with vitamins and flavor.", ingredients: [Ingredient(name: "Banana", imageUrl: "https://firebasestorage.googleapis.com/v0/b/recipes-ecbaa.appspot.com/o/120%2Fbanana.jpg?alt=media&token=827fd0f5-8e06-4e30-b2c4-e4465f63d42f", amount: "1 medium")])
+    var recipeDetail: RecipeDetail?
+    var showError: ((String) -> Void)?
+    
+    private let id: String
+    private let repository: RecipeRepositoryProtocol
+    
+    init(id: String, repository: RecipeRepositoryProtocol) {
+        self.id = id
+        self.repository = repository
+    }
+    
+    func loadRecipeDetail() async {
+        
+        do {
+            let recipeDetail = try await repository.fetchRecipe(id: id)
+            await MainActor.run {
+                self.recipeDetail = recipeDetail
+            }
+        } catch {
+            showError?("\("error.fetch-recipe-detail".localized) \(error.localizedDescription)")
+        }
+    }
 }
