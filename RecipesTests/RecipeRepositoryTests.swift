@@ -10,6 +10,10 @@ class LocalRecipeDataSourceMock: LocalRecipeDataSourceProtocol {
     func fetchRecipes() throws -> [RecipeDTO] {
         fetchRecipesResult
     }
+    
+    func fetchRecipe(with id: String) throws -> Recipes.RecipeDetailDTO {
+        RecipeDetailDTO(id: "", name: "", imageUrl: "", description: "", ingredients: [])
+    }
 }
 
 class RecipeRepositoryTests: XCTestCase {

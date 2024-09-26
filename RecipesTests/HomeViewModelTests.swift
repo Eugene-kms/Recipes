@@ -13,6 +13,7 @@ class RecipeRepositoryMock: RecipeRepositoryProtocol {
     var didFetchRecipes: Int = 0
     var shouldFetchRecipesThrowError = false
     
+    
     func fetchRecipes() async throws -> [Recipes.Recipe] {
         didFetchRecipes += 1
         
@@ -21,6 +22,11 @@ class RecipeRepositoryMock: RecipeRepositoryProtocol {
         }
         
         return fetchRecipesResult
+    }
+    
+    
+    func fetchRecipe(id: String) async throws -> Recipes.RecipeDetail {
+        RecipeDetail(id: "", name: "", imageUrl: "", description: "", ingredients: [])
     }
     
     var didSearchWithQuery: [String] = []
@@ -54,6 +60,19 @@ class HomeViewModelTests: XCTestCase {
         
         repository = RecipeRepositoryMock()
         viewModel = HomeViewModel(repository: repository)
+    }
+    
+    func test_whenFetschIsCalled_thenRepositoryFetchIsCalledAndDataIsSaved() async {
+        //given
+        let fetchResults = [Recipe.mock]
+        repository.fetchRecipesResult = fetchResults
+        
+        //when
+        await viewModel.loadRecipes()
+        
+        //then
+        XCTAssertEqual(viewModel.recipes.count, fetchResults.count)
+        XCTAssertEqual(repository.didFetchRecipes, 1)
     }
     
     func test_whenFetchSucceeds_thenSaveResults() async {
