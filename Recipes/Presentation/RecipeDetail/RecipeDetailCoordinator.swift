@@ -15,7 +15,7 @@ class RecipeDetailCoordinator: Coordinator {
     func start() {
         let viewModel = RecipeDetailViewModel(
             id: id,
-            repository: container.recipeRepository
+            container: container
         )
         let viewController = RecipeDetailViewController(viewModel: viewModel)
         
