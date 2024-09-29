@@ -53,14 +53,21 @@ class AppCoordinator {
     }
     
     private func setupBookmarks() -> UIViewController {
-        let bookmarkVC = UIViewController()
-        bookmarkVC.view.backgroundColor = .background
-        bookmarkVC.tabBarItem = UITabBarItem(
+        
+        let navigationController = UINavigationController()
+        navigationController.tabBarItem = UITabBarItem(
             title: "tabBar.bookmarks".localized,
             image: UIImage(named: "bookmark"),
             tag: 1
         )
-        return bookmarkVC
+        
+        let coordinator = BookmarksCoordinator(
+            navigationController: navigationController,
+            container: container
+        )
+        coordinator.start()
+        
+        return navigationController
     }
     
     private func setupProfile() -> UIViewController {
