@@ -46,7 +46,8 @@ class RecipeHeaderCell: UITableViewCell {
         contentView.addSubview(descriptionLabel)
         
         recipeImageView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().offset(24)
+            make.leading.equalToSuperview().offset(24)
+            make.trailing.equalToSuperview().offset(-24)
             make.top.equalToSuperview().offset(8)
             make.height.equalTo(231)
         }
