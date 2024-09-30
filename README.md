@@ -6,8 +6,8 @@
 
 Recipe App is an iOS application that allows users to browse, search, and bookmark their favorite recipes. This project was developed as part of a tutorial series to demonstrate modern iOS development practices, including MVVM-C architecture, Clean Architecture principles, and the use of popular third-party libraries.
 
-<img src="https://github.com/user-attachments/assets/c1bdd30c-149b-4804-8f55-c20153848d70" width="375">
-<img src="https://github.com/user-attachments/assets/8677f9ed-ac47-4a1f-ab2c-bcbbf54dd795" width="375">
+<img src="https://github.com/user-attachments/assets/66adee9d-36d0-42cc-a64c-e348dac8fdda" width="375">
+<img src="https://github.com/user-attachments/assets/f0d5c20b-bc36-4010-a4d4-301e1626f27e" width="375">
 
 ## Architecture
 
@@ -54,7 +54,7 @@ git clone https://github.com/yourusername/recipe-app.git
 3. Build and run the project on your simulator or device.
 
 ## Project Structure
-<img width="329" alt="Screenshot 2024-09-11 at 15 42 12" src="https://github.com/user-attachments/assets/f502ac73-2c16-4254-b578-6b1d4951e19f">
+<img width="329" alt="Screenshot 2024-09-30 at 17 16 29" src="https://github.com/user-attachments/assets/f62bd6cf-ac6a-4eea-85d4-cd95d89760e2">
 
 ## UI/UX
 
